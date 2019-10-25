@@ -4,7 +4,7 @@
     <p>sum: {{count}} times,count is {{evenOrOdd}}</p>
     <button @click="add">+</button>
     <button @click="reduce">-</button>
-    <button @click="OddAdd">和为奇数时增加</button>
+    <button @click="oddAdd">和为奇数时增加</button>
     <button @click="asyncADD">每隔1s增加</button>
   </div>
 </template>
@@ -12,7 +12,7 @@
 <script>
   export default {
     name: 'App',
-    data () {
+    data() {
       return {
         count: 0
       }
@@ -23,24 +23,25 @@
       }
     },
     methods: {
-      add () {
-       this.count = this.count + 1;
-       return this.count;
+      add() {
+        this.count = this.count + 1;
+        return this.count;
       },
-      reduce () {
+      reduce() {
         this.count = this.count - 1;
         return this.count;
       },
-      OddAdd () {
-        if(this.count%2===1){
-          return this.count++;
+      oddAdd() {
+        if ( this.count % 2 !== 0) {
+          this.count = this.count + 1;
+          return this.count;
         }
       },
-      asyncADD () {
-        setInterval((count)=>{
+      asyncADD() {
+        setInterval((count) => {
           count = this.count++;
           return count;
-        },1000)
+        }, 1000)
       }
     }
   }

@@ -1,46 +1,41 @@
 <template>
   <div id="app">
     <h3>计数器</h3>
-    <p>sum: {{count}} times,count is {{evenOrOdd}}</p>
+    <p>sum: {{$store.state.count}} times,count is {{$store.getters.evenOrOdd}}</p>
     <button @click="add">+</button>
     <button @click="reduce">-</button>
-    <button @click="OddAdd">和为奇数时增加</button>
+    <button @click="oddAdd">和为奇数时增加</button>
     <button @click="asyncADD">每隔1s增加</button>
   </div>
 </template>
 
 <script>
+  import store from './store'
   export default {
     name: 'App',
-    data () {
-      return {
-        count: 0
-      }
-    },
+    store,//所有的组件对象都多了一个属性：$store
     computed: {
       evenOrOdd() {
-        return this.count % 2 === 0 ? '偶数' : '奇数'
+        return $store.getters.evenOrOdd()
       }
     },
     methods: {
-      add () {
-       this.count = this.count + 1;
-       return this.count;
+      add() {
+      // 通知vuex去增加
+        this.$store.dispatch('add');
       },
-      reduce () {
-        this.count = this.count - 1;
-        return this.count;
+      reduce() {
+        this.$store.dispatch('reduce');
       },
-      OddAdd () {
-        if(this.count%2===1){
-          return this.count++;
+      oddAdd() {
+        if ( this.$store.state.count % 2 !== 0) {
+          this.$store.dispatch('add');
         }
       },
-      asyncADD () {
-        setInterval((count)=>{
-          count = this.count++;
-          return count;
-        },1000)
+      asyncADD() {
+        setInterval(() => {
+          this.$store.dispatch('add');
+        }, 1000)
       }
     }
   }
