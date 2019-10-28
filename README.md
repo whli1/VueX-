@@ -38,4 +38,7 @@ npm run build --report
 ```
 ##下载方式：npm install --save vuex
 
+##结构图
+< img src="./static/vuex.jpg" />
+
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
