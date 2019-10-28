@@ -30,6 +30,16 @@ const actions = {
   },
   reduce({commit}) {
     commit('REDUCE')
+  },
+  oddAdd({commit, state}) {
+    if (state.count % 2 !== 0) {
+      commit('ADD')
+    }
+  },
+  asyncADD({commit}) {
+    setInterval(() => {
+      commit('ADD')
+    }, 1000)
   }
 }
 

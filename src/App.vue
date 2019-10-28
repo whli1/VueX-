@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h3>计数器</h3>
-    <p>sum: {{$store.state.count}} times,count is {{$store.getters.evenOrOdd}}</p>
+    <p>sum: {{count}} times,count is {{evenOrOdd}}</p>
     <button @click="add">+</button>
     <button @click="reduce">-</button>
     <button @click="oddAdd">和为奇数时增加</button>
@@ -11,36 +11,16 @@
 
 <script>
   import store from './store'
-
+  import {mapState, mapGetters, mapActions} from 'vuex'
   export default {
     name: 'App',
     store,//所有的组件对象都多了一个属性：$store
     computed: {
-      evenOrOdd() {
-        return $store.getters.evenOrOdd()
-      }
+      ...mapState(['count']),//返回值对象：{count() {return $store.state.count}}
+      ...mapGetters(['evenOrOdd']),//返回值对象：{evenOrOdd() {return $store.getters.evenOrOdd()}}
     },
     methods: {
-      add() {
-        // 通知vuex去增加
-        clearInterval(this.timeOut);
-        this.$store.dispatch('add');
-      },
-      reduce() {
-        clearInterval(this.timeOut);
-        this.$store.dispatch('reduce');
-      },
-      oddAdd() {
-        clearInterval(this.timeOut);
-        if (this.$store.state.count % 2 !== 0) {
-          this.$store.dispatch('add');
-        }
-      },
-      asyncADD() {
-        this.timeOut = setInterval(() => {
-          this.$store.dispatch('add');
-        }, 1000)
-      }
+      ...mapActions(['add','reduce','oddAdd','asyncADD'])
     }
   }
 </script>
