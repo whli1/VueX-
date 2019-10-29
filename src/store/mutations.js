@@ -1,4 +1,4 @@
-import {ADD_TODO, DEL, SELECT_ALL, DELETE_ALL} from "./mutations-types";
+import {ADD_TODO, DEL, SELECT_ALL, DELETE_ALL, RECEIVE_TODOS} from "./mutations-types";
 
 export default {
   [ADD_TODO](state, {todo}) {
@@ -12,5 +12,11 @@ export default {
   },
   [DELETE_ALL](state) {
     state.todoList = state.todoList.filter(todo => !todo.complete)
+  },
+  [RECEIVE_TODOS](state, todos) {
+    state.todoList = todos;
+    console.log(todos);
+    console.log(state.todoList)
+
   }
 }

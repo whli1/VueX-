@@ -22,20 +22,12 @@ export default {
     TodoList,
     TodoFoot
   },
-  // data () {
-  //   return {
-  //     // 从localStorage读取
-  //     todoList: JSON.parse(window.localStorage.getItem('todo_key') || '[]')
-  //   }
-  // },
-  // watch: {
-  //   todoList: {
-  //     deep: true, // 深度监视
-  //     handler: function (val) {
-  //       window.localStorage.setItem('todo_key', JSON.stringify(val))
-  //     }
-  //   }
-  // }
+
+  mounted() {
+    //发送命令给ACTIONS异步获取保存的todoList
+    this.$store.dispatch('reqTodoList')
+  },
+
 }
 </script>
 

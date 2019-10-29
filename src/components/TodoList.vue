@@ -6,12 +6,20 @@
 <script>
 import Item from './TodoItem'
 import {mapState} from 'vuex'
+import storageUtil from '../utils/storageUtil'
 export default {
   components: {
     Item
   },
   computed: {
     ...mapState(['todoList'])
+  },
+  watch: {
+    todoList: {
+      handler: function (val) {
+        storageUtil.setTodoItems('todo_key', val);
+      }
+    }
   }
 }
 </script>
