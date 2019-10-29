@@ -41,5 +41,8 @@ npm run build --report
 >结构图
 ![Image text](https://raw.githubusercontent.com/whli1/VueX-/master/static/vuex.jpg)
 
+>scr:todoList案例
+
+>src-count:计数器案例
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

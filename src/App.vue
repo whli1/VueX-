@@ -1,30 +1,52 @@
 <template>
-  <div id="app">
-    <h3>计数器</h3>
-    <p>sum: {{count}} times,count is {{evenOrOdd}}</p>
-    <button @click="add">+</button>
-    <button @click="reduce">-</button>
-    <button @click="oddAdd">和为奇数时增加</button>
-    <button @click="asyncADD">每隔1s增加</button>
+  <div id="root">
+    <div class="todo-container">
+      <div class="todo-wrap">
+        <TodoHeader></TodoHeader>
+        <TodoList></TodoList>
+        <TodoFoot></TodoFoot>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  import store from './store'
-  import {mapState, mapGetters, mapActions} from 'vuex'
-  export default {
-    name: 'App',
-    store,//所有的组件对象都多了一个属性：$store
-    computed: {
-      ...mapState(['count']),//返回值对象：{count() {return $store.state.count}}
-      ...mapGetters(['evenOrOdd']),//返回值对象：{evenOrOdd() {return $store.getters.evenOrOdd()}}
-    },
-    methods: {
-      ...mapActions(['add','reduce','oddAdd','asyncADD'])
-    }
-  }
+import TodoHeader from './components/TodoHeader'
+import TodoList from './components/TodoList'
+import TodoFoot from './components/Todofoot'
+
+export default {
+  name: 'root',
+  components: {
+    TodoHeader,
+    TodoList,
+    TodoFoot
+  },
+  // data () {
+  //   return {
+  //     // 从localStorage读取
+  //     todoList: JSON.parse(window.localStorage.getItem('todo_key') || '[]')
+  //   }
+  // },
+  // watch: {
+  //   todoList: {
+  //     deep: true, // 深度监视
+  //     handler: function (val) {
+  //       window.localStorage.setItem('todo_key', JSON.stringify(val))
+  //     }
+  //   }
+  // }
+}
 </script>
 
 <style>
-
+  body {
+    background: #fff;
+  }
+  .todo-container{
+    margin: 30px auto;
+    width: 575px;
+    border: 1px solid #b8b8b8;
+    padding: 20px;
+  }
 </style>
